@@ -1,0 +1,6 @@
+﻿@model OnlineStore.Models.ShoppingCart
+
+<span class="count-items">
+    <b>In your cart: </b>
+    @Model.ItemsSet.Sum(i => i.Quantity) item(s)
+</span>

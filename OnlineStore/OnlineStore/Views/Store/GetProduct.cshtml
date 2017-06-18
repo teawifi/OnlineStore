@@ -1,0 +1,25 @@
+﻿@model OnlineStore.Models.ViewModels.GoodsDescriptionViewModel
+
+<div id="product-id" class="item" value='@Model.ProductID'>
+   
+    <img src="@Url.Action("GetImage", "Store", new { Model.CategoryID })" alt="Category image" style = 'width:200px; height:150px;' /> 
+    
+    <h4><dt>Goods name:</dt></h4>
+    <h3>@Model.ProductName</h3>
+
+    <h4><dt>Quantity per unit:</dt></h4>
+    <h5>@Model.QuantityPerUnit</h5>
+
+    <h4><dt>Unit price:</dt></h4>
+    <h4>@Model.UnitPrice</h4>    
+       
+    @using (Html.BeginForm("AddItemToCart", "Cart",
+        new { productID = Model.ProductID }, FormMethod.Get, new { @class = "shop-cart" } ))
+    {
+        <input type="submit" value="Buy" onclick="getCartFromServer()"/>
+    }
+
+    <div id="mod-dialog" class="modal fade">
+        <div id="dialogcontent" class="modal-dialog"></div>
+    </div>    
+</div>

@@ -1,0 +1,28 @@
+﻿@model List<OnlineStore.Models.ViewModels.CartItemViewModel>
+
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h4>Shopping cart</h4>
+    </div>
+    <div class="modal-body">
+        <dl class="dl-horizontal">
+            <ol>
+                @foreach (var goods in Model)
+                {
+                    <li>
+                        <dt>@Html.DisplayFor(item => goods.ProductName)</dt>
+                        <dd>@Html.EditorFor(item => goods.Quantity)</dd>
+                    </li>
+                }
+             </ol>
+        </dl>
+        <button class="close" data-dismiss="modal" area-hidden="false">Continue</button>
+        
+        @using (Html.BeginForm("ClearShoppingCart", "Cart"))
+        {
+            <input type="submit" value="Buy" />
+        }        
+    </div>
+    
+</div>

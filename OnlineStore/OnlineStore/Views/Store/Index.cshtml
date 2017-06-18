@@ -1,0 +1,28 @@
+﻿@model PagedList.IPagedList<OnlineStore.Models.ViewModels.PageWithGoodsViewModel>
+@using PagedList.Mvc;
+
+@{
+    int categoryID = (int)Model.Select(c => c.CategoryID).FirstOrDefault();
+}
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{ if (TempData["Message"] != null)
+    {
+        ViewBag.Message = TempData["Message"];
+        <h2>@ViewBag.Message</h2>
+    }
+}
+    
+
+@foreach (var g in Model)
+{
+    <div class="goods">
+        <h3>@Html.ActionLink(g.ProductName, "GetProduct", new { goodsID = g.ProductID })</h3>
+    </div>
+}
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { categoryID, page }))
+
+
