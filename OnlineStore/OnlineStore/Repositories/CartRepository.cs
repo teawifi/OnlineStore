@@ -4,6 +4,7 @@ using OnlineStore.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace OnlineStore.Repositories
@@ -19,20 +20,23 @@ namespace OnlineStore.Repositories
 
         // CreateCartItemVM() creates and returns a cart item
 
-        public CartItemViewModel CreateCartItemVM(int productID)
+        public async Task<CartItemViewModel> CreateCartItemVMAsync(int productID)
         {
             using (var dbContext = GetApplicationDbContext())
             {
-                var item = (from product in dbContext.Products
-                           where product.ProductID == productID
-                           select
-                           new CartItemViewModel
-                           {
-                               ProductID = product.ProductID,
-                               ProductName = product.ProductName,
-                               Quantity = 1
-                           }).FirstOrDefault();
-                return item;
+                return await Task<CartItemViewModel>.Factory.StartNew(() =>
+                {
+                    var item = (from product in dbContext.Products
+                                where product.ProductID == productID
+                                select
+                                new CartItemViewModel
+                                {
+                                    ProductID = product.ProductID,
+                                    ProductName = product.ProductName,
+                                    Quantity = 1
+                                }).FirstOrDefault();
+                    return item;
+                });                
             }
         }        
     }

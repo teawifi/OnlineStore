@@ -1,6 +1,7 @@
 ﻿using OnlineStore.Repositories;
 using OnlineStore.Repositories.Interfaces;
 using PagedList;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace OnlineStore.Controllers
@@ -11,44 +12,44 @@ namespace OnlineStore.Controllers
         
         // Index() method returns the goods list to start page         
 
-        public ActionResult Index(int? page, int categoryID = 1)
+        public async Task<ActionResult> IndexAsync(int? page, int categoryID = 1)
         {
             int pageSize = 15;
             int pageNumber = (page ?? 1);
 
-            var list = store.GetGoods(categoryID);
+            var list = await store.GetGoodsAsync(categoryID);
 
             if (list == null)
             {
                 return HttpNotFound();
             }
             
-            return View(list.ToPagedList(pageNumber, pageSize));
+            return View("Index", list.ToPagedList(pageNumber, pageSize));
         }
         
         // GetProduct() method returns the product data to view         
 
-        public ActionResult GetProduct(int goodsID)
+        public async Task<ActionResult> GetProductAsync(int goodsID)
         {
             if(goodsID < 1)
             {
                 return HttpNotFound();
             }
 
-            var goods = store.GetGoodsDescription(goodsID);
+            var goods = await store.GetGoodsDescriptionAsync(goodsID);
 
             if(goods == null)
             {
                 return HttpNotFound();
             }
-            return View(goods);
+            return View("GetProduct", goods);
         }
 
         // GetImage() method returns a category image to "GetProduct" view
 
-        public ActionResult GetImage(int categoryID)
+        public async Task<ActionResult> GetImageAsync(int categoryID)
         {
-            var picture = store.GetCategoryPicture(categoryID);
+            var picture = await store.GetCategoryPictureAsync(categoryID);
             if (picture != null)
             {
                 return new FileContentResult(picture, "image/jpeg");                

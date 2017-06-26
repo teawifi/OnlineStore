@@ -1,6 +1,7 @@
 ﻿using OnlineStore.Models;
 using OnlineStore.Repositories;
 using OnlineStore.Repositories.Interfaces;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace OnlineStore.Controllers
@@ -14,13 +15,13 @@ namespace OnlineStore.Controllers
          * The binding mechanism creates the object cart using session state
         */
 
-        public ActionResult AddItemToCart(ShoppingCart cart, int productID)
+        public async Task<ActionResult> AddItemToCartAsync(ShoppingCart cart, int productID)
         {
             if(productID < 1)
             {
                 return HttpNotFound();
             }
-            var goods = cartRepo.CreateCartItemVM(productID);
+            var goods = await cartRepo.CreateCartItemVMAsync(productID);
 
             if (goods == null)
             {
@@ -46,7 +47,7 @@ namespace OnlineStore.Controllers
 
             TempData["Message"] = "Thank you for choosing us!";
 
-            return Redirect("/Store/Index");
+            return Redirect("/Store/IndexAsync");
         }
         
         

@@ -9,6 +9,6 @@ namespace OnlineStore.Repositories.Interfaces
 {
     public interface ICart
     {
-        CartItemViewModel CreateCartItemVM(int productID);
+        Task<CartItemViewModel> CreateCartItemVMAsync(int productID);
     }
 }

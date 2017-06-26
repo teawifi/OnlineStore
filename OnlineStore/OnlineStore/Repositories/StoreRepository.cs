@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace OnlineStore.Repositories
 {
@@ -17,54 +18,63 @@ namespace OnlineStore.Repositories
             return ApplicationDbContext.Create();
         }
 
-        public List<PageWithGoodsViewModel> GetGoods(int categoryID)
+        public async Task<List<PageWithGoodsViewModel>> GetGoodsAsync(int categoryID)
         {
             using (var dbContext = GetApplicationDbContext())
             {
-                var listGoods = (from product in dbContext.Products
-                                 where product.CategoryID == categoryID
-                                 select
-                                 new PageWithGoodsViewModel
-                                 {
-                                     ProductID = product.ProductID,
-                                     ProductName = product.ProductName,
-                                     CategoryID = product.CategoryID
-                                 }).ToList();
-                return listGoods;
+                return await Task<List<PageWithGoodsViewModel>>.Factory.StartNew(() =>
+                {
+                    var listGoods = (from product in dbContext.Products
+                                     where product.CategoryID == categoryID
+                                     select
+                                     new PageWithGoodsViewModel
+                                     {
+                                         ProductID = product.ProductID,
+                                         ProductName = product.ProductName,
+                                         CategoryID = product.CategoryID
+                                     }).ToList();
+                    return listGoods;
+                });                
             }
         }
 
-        public GoodsDescriptionViewModel GetGoodsDescription(int goodsID)
+        public async Task<GoodsDescriptionViewModel> GetGoodsDescriptionAsync(int goodsID)
         {
             using (var dbContext = GetApplicationDbContext())
             {
-                var goodsdescription = (from product in dbContext.Products
-                                        join category in dbContext.Categories
-                                        on product.CategoryID equals category.CategoryID
-                                        where product.ProductID == goodsID
-                                        select
-                                        new GoodsDescriptionViewModel
-                                        {
-                                            ProductID = product.ProductID,
-                                            ProductName = product.ProductName,
-                                            CategoryID = category.CategoryID,
-                                            UnitPrice = product.UnitPrice,
-                                            QuantityPerUnit = product.QuantityPerUnit
-                                        }).FirstOrDefault();                
+                return await Task<GoodsDescriptionViewModel>.Factory.StartNew(() =>
+                {
+                    var goodsdescription = (from product in dbContext.Products
+                                            join category in dbContext.Categories
+                                            on product.CategoryID equals category.CategoryID
+                                            where product.ProductID == goodsID
+                                            select
+                                            new GoodsDescriptionViewModel
+                                            {
+                                                ProductID = product.ProductID,
+                                                ProductName = product.ProductName,
+                                                CategoryID = category.CategoryID,
+                                                UnitPrice = product.UnitPrice,
+                                                QuantityPerUnit = product.QuantityPerUnit
+                                            }).FirstOrDefault();
 
-                return goodsdescription;
+                    return goodsdescription;
+                });                
             }
         }
 
-        public byte[] GetCategoryPicture(int categoryID)
+        public async Task<byte[]> GetCategoryPictureAsync(int categoryID)
         {
             using (var dbContext = GetApplicationDbContext())
             {
-                byte[] picture = dbContext.Categories.Select(p => p.Picture).FirstOrDefault();
+                return await Task<byte[]>.Factory.StartNew(() =>
+                {
+                    byte[] picture = dbContext.Categories.Select(p => p.Picture).FirstOrDefault();
 
-                byte[] imgConvertResult = ConvertToImageFormat(picture);
+                    byte[] imgConvertResult = ConvertToImageFormat(picture);
 
-                return imgConvertResult;
+                    return imgConvertResult;
+                });                
             }
         }
 

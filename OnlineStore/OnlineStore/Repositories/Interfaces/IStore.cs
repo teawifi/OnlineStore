@@ -12,10 +12,10 @@ namespace OnlineStore.Repositories.Interfaces
 {
     public interface IStore
     {
-        List<PageWithGoodsViewModel> GetGoods(int categoryID);
+        Task<GoodsDescriptionViewModel> GetGoodsDescriptionAsync(int goodsID);
 
-        GoodsDescriptionViewModel GetGoodsDescription(int goodsID);
+        Task<List<PageWithGoodsViewModel>> GetGoodsAsync(int categoryID);
 
-        byte[] GetCategoryPicture(int categoryID);        
+        Task<byte[]> GetCategoryPictureAsync(int categoryID);
     }
 }

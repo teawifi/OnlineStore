@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -22,7 +23,7 @@ namespace OnlineStore.Controllers
             string result = "";
             foreach (var item in listCategories)
             {
-                result += "<li><a href='/Store/Index/?categoryID=" + item.CategoryID + "' title='" + item.CategoryName + "'>" + item.CategoryName + "</a></li>";
+                result += "<li><a href='/Store/IndexAsync/?categoryID=" + item.CategoryID + "' title='" + item.CategoryName + "'>" + item.CategoryName + "</a></li>";
             }
             return Content(result);
         }
