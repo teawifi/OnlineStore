@@ -1,14 +1,12 @@
-﻿
-function updateCartValue() {
+﻿var updateCartValue = function () {
     var url = "/Cart/CountItemsInCart";
     $.get(url, null, function (data) {
         $('.count-items').html(data);
     });
 }
 
-function getCartFromServer() {
+$(document).ready(function () {
     var id = $("#product-id").attr('value');
-    $.ajaxSetup({ cache: false });
     $(".shop-cart").on('click', function (e) {
         var url = "/Cart/AddItemToCartAsync";
         e.preventDefault();
@@ -16,12 +14,6 @@ function getCartFromServer() {
             $('#dialogcontent').html(data);
             $('#mod-dialog').modal('show');
         });
-    });
-    updateCartValue();
-}
-
-
-
-
-
-
+        updateCartValue();
+    });    
+});

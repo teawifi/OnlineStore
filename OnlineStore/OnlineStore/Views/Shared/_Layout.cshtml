@@ -24,25 +24,29 @@
             </div>
         </div>
     </div>
-    <div id="categories">
-        <ul>
-            @Html.Action("Menu", "Nav")
-        </ul>        
+    <div class="flex-container">
+        <div id="categories" class="flex-item">
+            <ul>
+                @Html.Action("Menu", "Nav")
+            </ul>
+        </div>
+        <div id="body-content" class="flex-item">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Online Store</p>
+            </footer>
+        </div>
+        <div id="cart-items" class="flex-item">
+            @if (User.Identity.IsAuthenticated)
+            {
+                { Html.RenderAction("CountItemsInCart", "Cart"); }
+            }
+        </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Online Store</p>
-        </footer>
-    </div>
-    <div id="cart-items">
-        @if (User.Identity.IsAuthenticated)
-        {
-            { Html.RenderAction("CountItemsInCart", "Cart");}
-        }
-</div>
-    <script src="/Scripts/store.myscript.js"></script>
+ 
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/store.myscript.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     

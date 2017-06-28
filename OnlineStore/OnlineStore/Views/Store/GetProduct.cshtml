@@ -2,23 +2,19 @@
 
 <div id="product-id" class="item" value='@Model.ProductID'>
    
-    <img src="@Url.Action("GetImageAsync", "Store", new { Model.CategoryID })" alt="Category image" style = 'width:200px; height:150px;' /> 
+    <img src="@Url.Action("GetImageAsync", "Store", new { Model.CategoryID })" id="category-image" alt="Category image"/> 
     
-    <h4><dt>Goods name:</dt></h4>
+    <h4><dt>Good name:</dt></h4>
     <h3>@Model.ProductName</h3>
 
     <h4><dt>Quantity per unit:</dt></h4>
     <h5>@Model.QuantityPerUnit</h5>
 
     <h4><dt>Unit price:</dt></h4>
-    <h4>@Model.UnitPrice</h4>    
-       
-    @using (Html.BeginForm("AddItemToCartAsync", "Cart",
-        new { productID = Model.ProductID }, FormMethod.Get, new { @class = "shop-cart" } ))
-    {
-        <input type="submit" value="Buy" onclick="getCartFromServer()"/>
-    }
-
+    <h4>@Model.UnitPrice</h4>
+    
+    <input type="submit" value="Buy" class = "shop-cart"/>
+    
     <div id="mod-dialog" class="modal fade">
         <div id="dialogcontent" class="modal-dialog"></div>
     </div>    

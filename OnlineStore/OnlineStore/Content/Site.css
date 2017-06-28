@@ -1,64 +1,43 @@
 ﻿body {
     padding-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 20px;   
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    float: left;
-
-    padding-left: 15px;
-    padding-right: 15px;
-    border-left: 2px solid gray;
-    margin-left: 9em;
-    padding: 1em;
-
-
+.flex-container {
+    display: flex;
+    width: auto;
+    height: auto;           
+}
+.flex-item {    
+    margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;    
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
-}
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-
-#categories{
-    float: left;
-    width: 8em;
-    padding: .3em;
+#categories {
+    flex: 0.8; 
+    font-size: 1.5em;   
 }
 
 #categories a {
-    font: bold 1.1em "Arial Narrow","Franklin Gothic Medium",Arial; display: block;
     text-decoration: none; 
-    padding: .6em; 
     color: Black;    
 }
 
-#cart-items{
-    float:left;
+#body-content {
+    flex: 2.2;    
 }
 
-dialog {
-   border: 1px solid rgba(0, 0, 0, 0.3);
-   border-radius: 6px;
-   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+#body-content a {
+    color: Black; 
 }
 
-dialog::backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);
+#cart-items {
+    flex: 1;
+    justify-content: flex-end;
+    font-size: 1.3em;   
 }
 
+#category-image {
+    width:300px;
+    height:225px;
+}
