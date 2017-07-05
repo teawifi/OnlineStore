@@ -10,13 +10,13 @@
 ##### Microsoft Visual Studio Community 2015
 ***
 ###### To run the project you have to EXECUTE next commands: 
-###### 1) in Package Manager Console: "enable-migrations";
+###### 1) in Package Manager Console - "enable-migrations";
 ###### 2) to modify the Seed() method of the Configuration.cs class in the Migrations directory to the next code:
 
 ```C#
 			using (var dbContext = ApplicationDbContext.Create())
-			{
-				IEnumerable<Product> productsIntermediateList = dbContext.Products
+            {
+                IEnumerable<Product> productsIntermediateList = dbContext.Products
                     .Where(prod => (prod.CategoryID == 3) || (prod.CategoryID == 1));
 
                 /* 
@@ -52,7 +52,8 @@
                     dbContext.Products.AddRange(productList);
                     dbContext.SaveChanges();
                 }
-			}
+            }
+        
 ```
 
 ###### 3) To add namespaces to the Configuration.cs class:
@@ -62,8 +63,8 @@
 			using System.Collections.Generic;
 ```
 
-###### 4) "add-migration 'SomeName'"
-###### 	(DELETE the creating "dbo.Categories" and "dbo.Products" tables from the Up() method of 'SomeName' migration class);
+###### 4) in Package Manager Console - "add-migration 'SomeName'"
+###### 	(DELETE the creating "dbo.Categories" and "dbo.Products" tables from the Up() method of 'SomeName' migration class)
 ###### 5) "update-database".
 ***
 # Examples of the application
