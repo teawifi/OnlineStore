@@ -53,11 +53,10 @@ namespace OnlineStore.Controllers
         }
 
         //
-        // GET: /Account/Login
+        // GET: /Account/Login        
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login()
         {
-            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -74,12 +73,12 @@ namespace OnlineStore.Controllers
             }
 
             // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            // To enable password failures to trigger account lockout, change to shouldLockout: true   
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToLocal("/Store/IndexAsync");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -391,6 +390,7 @@ namespace OnlineStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            ShoppingCart.Instance.ClearCart();
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("IndexAsync", "Store");
         }

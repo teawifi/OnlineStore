@@ -16,19 +16,35 @@
 #categories {
     flex: 0.8; 
     font-size: 1.5em;   
+    border-right: 1px solid #808080;
 }
 
 #categories a {
     text-decoration: none; 
-    color: Black;    
+    color: black;  
+    font-size: 18px;  
+    font-weight: 600;
+}
+#categories ul {
+    list-style-type: none;
+}
+#categories ul > li> a:hover {
+    opacity: .7;
+    transition: .3s;
 }
 
 #body-content {
-    flex: 2.2;    
+    flex: 2.2;
+    position: relative;    
+}
+
+#body-content .goods h3 {
+    font-size: 16px;
+
 }
 
 #body-content a {
-    color: Black; 
+    color: black; 
 }
 
 #cart-items {
@@ -41,3 +57,57 @@
     width:300px;
     height:225px;
 }
+
+.thanks_toast {
+    opacity: 0;
+    position: absolute;
+    right: 0; 
+    padding: 10px 40px;
+    background-color: #C8FEE5;
+    border-radius: 3px;
+    border: 1px solid #04D274;
+    font-size: 14px;
+    animation: hidetoast;
+    animation-duration: 3s;
+}
+
+
+
+@keyframes hidetoast {
+    1% {opacity: 1}
+    30% {opacity: 1}
+    60% {opacity: 1}
+    90% {opacity: 0.8}
+    93% {opacity: 0.6}
+    96% {opacity: 0.5}
+    98% {opacity: 0.3}
+    100% {opacity: 0}
+}
+.dl-horizontal ol li {
+    margin: 10px 0;
+}
+
+.dl-horizontal ol li .wrap {
+    padding-left: 10px;
+    border-left: 1px solid #000;
+    display: flex;
+    margin-top: -20px;
+}
+
+.dl-horizontal ol li .wrap h5 {
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.shop-cart, .btn-primary {
+    border-radius: 5px;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#04D274), to(#EBFFFF));
+}
+
+.btn-default {
+    float: right;
+}
+.btn-primary {
+    color:black;
+}
+    

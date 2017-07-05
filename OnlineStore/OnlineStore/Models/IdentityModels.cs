@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using OnlineStore.Migrations;
 
 namespace OnlineStore.Models
 {
@@ -22,6 +23,7 @@ namespace OnlineStore.Models
         public ApplicationDbContext()
             : base("name=StoreConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>("StoreConnection"));
         }
 
         public virtual DbSet<Category> Categories { get; set; }

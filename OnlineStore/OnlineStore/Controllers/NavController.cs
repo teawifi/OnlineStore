@@ -1,9 +1,4 @@
 ﻿using OnlineStore.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace OnlineStore.Controllers
@@ -19,13 +14,9 @@ namespace OnlineStore.Controllers
             if (listCategories == null)
             {
                 return HttpNotFound();
-            }
-            string result = "";
-            foreach (var item in listCategories)
-            {
-                result += "<li><a href='/Store/IndexAsync/?categoryID=" + item.CategoryID + "' title='" + item.CategoryName + "'>" + item.CategoryName + "</a></li>";
-            }
-            return Content(result);
+            }           
+
+            return PartialView("Menu", listCategories);
         }
     }
 }

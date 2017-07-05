@@ -16,7 +16,7 @@ namespace OnlineStore
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{page}/{id}",
-                defaults: new { controller = "Store", action = "Index", page = UrlParameter.Optional,  id = UrlParameter.Optional }
+                defaults: new { controller = "Store", action = "IndexAsync", page = UrlParameter.Optional,  id = UrlParameter.Optional }
             );
         }
     }

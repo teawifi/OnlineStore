@@ -213,6 +213,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelBinders\CartModelBinder.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -294,6 +295,7 @@
     <Content Include="Views\Store\GetProduct.cshtml" />
     <Content Include="Views\Cart\CountItemsInCart.cshtml" />
     <Content Include="Views\Cart\ShoppingCart.cshtml" />
+    <Content Include="Views\Nav\Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

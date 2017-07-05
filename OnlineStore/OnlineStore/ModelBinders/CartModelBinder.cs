@@ -5,17 +5,11 @@ namespace OnlineStore.ModelBinders
 {
     public class CartModelBinder : IModelBinder
     {
-        private string sessionIndex = "Cart";
+        private ShoppingCart cart;
 
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            ShoppingCart cart = (ShoppingCart)controllerContext.HttpContext.Session[sessionIndex];
-
-            if(cart == null)
-            {
-                cart = new ShoppingCart();
-                controllerContext.HttpContext.Session[sessionIndex] = cart;
-            }
+            cart = ShoppingCart.Instance;
 
             return cart;            
         }        

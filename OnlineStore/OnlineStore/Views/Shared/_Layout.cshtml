@@ -27,7 +27,7 @@
     <div class="flex-container">
         <div id="categories" class="flex-item">
             <ul>
-                @Html.Action("Menu", "Nav")
+                @{ Html.RenderAction("Menu", "Nav"); }             
             </ul>
         </div>
         <div id="body-content" class="flex-item">

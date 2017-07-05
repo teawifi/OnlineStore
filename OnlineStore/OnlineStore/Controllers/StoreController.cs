@@ -10,7 +10,7 @@ namespace OnlineStore.Controllers
     {
         IStore store = new StoreRepository();
         
-        // Index() method returns the goods list to start page         
+        // The Index() method returns the goods list to start page         
 
         public async Task<ActionResult> IndexAsync(int? page, int categoryID = 1)
         {
@@ -27,15 +27,10 @@ namespace OnlineStore.Controllers
             return View("Index", list.ToPagedList(pageNumber, pageSize));
         }
         
-        // GetProduct() method returns the product data to view         
+        // The GetProduct() method returns the product data to view         
 
         public async Task<ActionResult> GetProductAsync(int goodsID)
         {
-            if(goodsID < 1)
-            {
-                return HttpNotFound();
-            }
-
             var goods = await store.GetGoodsDescriptionAsync(goodsID);
 
             if(goods == null)
@@ -45,7 +40,7 @@ namespace OnlineStore.Controllers
             return View("GetProduct", goods);
         }
 
-        // GetImage() method returns a category image to "GetProduct" view
+        // The GetImage() method returns a category image to "GetProduct" view
 
         public async Task<ActionResult> GetImageAsync(int categoryID)
         {

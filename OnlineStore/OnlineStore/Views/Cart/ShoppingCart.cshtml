@@ -10,18 +10,22 @@
             <ol>
                 @foreach (var goods in Model)
                 {
+
                     <li>
-                        <dt>@Html.DisplayFor(item => goods.ProductName)</dt>
-                        <dd>@Html.EditorFor(item => goods.Quantity)</dd>
+                        <div class="wrap">
+                            <h5>@Html.DisplayFor(item => goods.ProductName) </h5>
+                            @Html.EditorFor(item => goods.Quantity)
+                        </div>
                     </li>
                 }
              </ol>
         </dl>
-        <button class="close" data-dismiss="modal" area-hidden="false">Continue</button>
+
+        <button type="button" class="btn btn-default" data-dismiss="modal">Continue</button>
         
         @using (Html.BeginForm("ClearShoppingCart", "Cart"))
         {
-            <input type="submit" value="Buy" />
+            <input type="submit" value="Buy" class="btn btn-primary"/>
         }        
     </div>
     

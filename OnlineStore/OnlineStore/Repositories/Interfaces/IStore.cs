@@ -1,11 +1,5 @@
-﻿using OnlineStore.Models;
-using OnlineStore.Models.ViewModels;
-using System;
+﻿using OnlineStore.Models.ViewModels;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace OnlineStore.Repositories.Interfaces

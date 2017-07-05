@@ -1,24 +1,19 @@
 ﻿using OnlineStore.Models;
 using OnlineStore.Models.ViewModels;
 using OnlineStore.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace OnlineStore.Repositories
 {
     public class CartRepository : ICart
     {
-        ShoppingCart cart = new ShoppingCart();
-
         private ApplicationDbContext GetApplicationDbContext()
         {
             return ApplicationDbContext.Create();
         }
 
-        // CreateCartItemVM() creates and returns a cart item
+        // The CreateCartItemVM() creates and returns a cart item
 
         public async Task<CartItemViewModel> CreateCartItemVMAsync(int productID)
         {

@@ -9,14 +9,24 @@ using System.Web.Mvc;
 namespace OnlineStore.Models
 {
     [ModelBinder(typeof(CartModelBinder))]
-    public class ShoppingCart
+    public sealed class ShoppingCart
     {
-        public ShoppingCart()
-        {
-            ItemsSet = new List<CartItemViewModel>();
-        }
+        private static readonly ShoppingCart instance = new ShoppingCart();
         
         public List<CartItemViewModel> ItemsSet { get; set; }
+
+        private ShoppingCart()
+        {
+            ItemsSet = new List<CartItemViewModel>();            
+        }
+
+        public static ShoppingCart Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }        
 
         public void AddItem(CartItemViewModel item)
         {
