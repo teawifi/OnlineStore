@@ -14,7 +14,7 @@
 ###### 2) to modify the Seed() method of the Configuration.cs class in the Migrations directory to the next code:
 
 ```C#
-			using (var dbContext = ApplicationDbContext.Create())
+        using (var dbContext = ApplicationDbContext.Create())
             {
                 IEnumerable<Product> productsIntermediateList = dbContext.Products
                     .Where(prod => (prod.CategoryID == 3) || (prod.CategoryID == 1));
