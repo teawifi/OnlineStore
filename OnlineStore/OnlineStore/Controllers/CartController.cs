@@ -13,9 +13,9 @@ namespace OnlineStore.Controllers
          * The AddItemToCart() method adds good to shopping cart and returns cart items to partial view.
          * The binding mechanism creates the object cart
         */
-        public ActionResult AddItemToCart(ShoppingCart cart, int productID)
+        public async Task<ActionResult> AddItemToCartAsync(ShoppingCart cart, int productID)
         {
-            var goods = cartRepo.CreateCartItemVMAsync(productID).Result;
+            var goods = await cartRepo.CreateCartItemVMAsync(productID);
 
             if (goods == null)
             {
